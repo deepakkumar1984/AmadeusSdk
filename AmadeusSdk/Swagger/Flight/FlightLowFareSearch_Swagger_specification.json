@@ -1,0 +1,902 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.4",
+    "title": "Flight Low-fare Search",
+    "x-tags": [
+      "#ama-for-dev"
+    ],
+    "x-status": "validated",
+    "x-release-note": {
+      "1.0.0": [
+        "Initial Version"
+      ],
+      "1.0.1": [
+        "Aircrafts changed into aircraft",
+        "Clarified example for the parameters origin, destination and currency",
+        "Clarified age for the parameter children",
+        "Added /shopping in the example",
+        "Total taxes are returned at price level",
+        "Added links to ISO, IATA kind of references",
+        "Clarified description of fare class and fare basis",
+        "Fixed the example"
+      ],
+      "1.0.2": [
+        "Clarification on \"max\" parameter value",
+        "Update examples"
+      ],
+      "1.0.3": [
+        "Update examples"
+      ],
+      "1.0.4": [
+        "Add decomission banner"
+      ]
+    },
+    "description": "\n###<span style=\"color:red\">**WARNING**: Flight Low-fare Search API is scheduled to be **decommissioned on May 28, 2020**</span>. <span style=\"color:black\">This API will be replaced by the new \"[Flight Offers Search API](https://developers.amadeus.com/self-service/category/air/api-doc/flight-offers-search/api-reference)\".</span>\n\n# Introduction\n\nThe Flight Low-fare Search REST/JSON API is a traditional flight search API that enables you to find the best flight offers that match your search (one-way and round-trip) from a wide choice of airlines.\n\nThe result contains the flight details and will allow the user to select their preferred option based on either price or convenience. A wide range of search criteria can be applied to narrow the search results.\n\n# Authorization\n\nBefore using the API you will need to get an access token. Please read our **[Authorization Guide](https://developers.amadeus.com/self-service/apis-docs/guides/authorization)** for more information on how to get your token.\n\n# Supported Operations\n\nResource: flight-offers\n\nHTTP method: GET"
+  },
+  "host": "test.api.amadeus.com",
+  "basePath": "/v1",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/vnd.amadeus+json",
+    "application/json"
+  ],
+  "produces": [
+    "application/vnd.amadeus+json",
+    "application/json"
+  ],
+  "paths": {
+    "/shopping/flight-offers": {
+      "get": {
+        "tags": [
+          "flight-offers"
+        ],
+        "deprecated": true,
+        "operationId": "getFlightOffers",
+        "summary": "Find the cheapest bookable flights.",
+        "parameters": [
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "city/airport [IATA code](http://www.iata.org/publications/Pages/code-search.aspx) from which the traveler will depart, e.g. BOS for Boston",
+            "required": true,
+            "type": "string",
+            "pattern": "[A-Z]{3}"
+          },
+          {
+            "name": "destination",
+            "in": "query",
+            "description": "city/airport [IATA code](http://www.iata.org/publications/Pages/code-search.aspx) to which the traveler is going, e.g. PAR for Paris",
+            "required": true,
+            "type": "string",
+            "pattern": "[A-Z]{3}"
+          },
+          {
+            "name": "departureDate",
+            "in": "query",
+            "description": "the date on which the traveler will depart from the origin to go to the destination. Dates are specified in the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) YYYY-MM-DD format, e.g. 2017-12-25",
+            "required": true,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "returnDate",
+            "in": "query",
+            "description": "the date on which the traveler will depart from the destination to return to the origin. If this parameter is not specified, only one-way itineraries are found. If this parameter is specified, only round-trip itineraries are found. Dates are specified in the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) YYYY-MM-DD format, e.g. 2018-02-28",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "arrivalBy",
+            "in": "query",
+            "description": "the date and time by which the last flight of the outbound should arrive at the destination. Datetimes are specified in the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) YYYY-MM-ddThh:mm format, e.g. 2016-12-31T23:59",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "returnBy",
+            "in": "query",
+            "description": "the date and time by which the last flight of the inbound should arrive at the origin. Datetimes are specified in the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) YYYY-MM-ddThh:mm format, e.g. 2017-12-31T12:01",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "adults",
+            "in": "query",
+            "description": "the number of adult travelers (age 12 or older on date of departure). If specified, this number should be greater than or equal to 0",
+            "required": false,
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9,
+            "default": 1
+          },
+          {
+            "name": "children",
+            "in": "query",
+            "description": "the number of child travelers (older than age 2 and younger than age 12 on date of departure) who will each have their own separate seat. If specified, this number should be greater than or equal to 0",
+            "required": false,
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9
+          },
+          {
+            "name": "infants",
+            "in": "query",
+            "description": "the number of infant travelers (whose age is less or equal to 2 on date of departure). Infants travel on the lap of an adult or a senior traveler, and thus the number of infants must not exceed the sum of the number of adults and seniors. If specified, this number should be greater than or equal to 0",
+            "required": false,
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9
+          },
+          {
+            "name": "seniors",
+            "in": "query",
+            "description": "the number of senior travelers (age 65 or older on date of departure). If specified, this number should be greater than or equal to 0",
+            "required": false,
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9
+          },
+          {
+            "name": "travelClass",
+            "in": "query",
+            "description": "most of the flight time should be spent in a cabin of this quality or higher. The accepted travel class is economy, premium economy, business or first class. If no travel class is specified, the search considers any travel class",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "ECONOMY",
+              "PREMIUM_ECONOMY",
+              "BUSINESS",
+              "FIRST"
+            ]
+          },
+          {
+            "name": "includeAirlines",
+            "in": "query",
+            "description": "if specified, the flight offer will include at least one segment per bound marketed by one of these airlines. Airlines are specified as [IATA airline codes](http://www.iata.org/publications/Pages/code-search.aspx) and are comma-separated, e.g. 6X,7X,8X",
+            "required": false,
+            "type": "string",
+            "collectionFormat": "csv",
+            "pattern": "[0-9A-Z]{2}"
+          },
+          {
+            "name": "excludeAirlines",
+            "in": "query",
+            "description": "if specified, the flight offer will exclude all the flights marketed by one of these airlines. Airlines are specified as [IATA airline codes](http://www.iata.org/publications/Pages/code-search.aspx) and are comma-separated, e.g. 6X,7X,8X",
+            "required": false,
+            "type": "string",
+            "collectionFormat": "csv",
+            "pattern": "[0-9A-Z]{2}"
+          },
+          {
+            "name": "nonStop",
+            "in": "query",
+            "description": "if set to true, the search will find only flights going from the origin to the destination with no stop in between",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "the preferred currency for the flight offers. Currency is specified in the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format, e.g. EUR for Euro",
+            "required": false,
+            "type": "string",
+            "pattern": "[A-Z]{3}"
+          },
+          {
+            "name": "maxPrice",
+            "in": "query",
+            "description": "maximum price of the flight offers to find, in EUR unless some other currency is specified. By default, no limit is applied. If specified, the value should be a positive number with no decimals",
+            "required": false,
+            "type": "integer",
+            "minimum": 0
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "description": "maximum number of flight offers to return. \n\nIf specified, the value should be between 1 and 250. When not specified, system uses the default value **50**.\n",
+            "required": false,
+            "default": 50,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "500": {
+            "$ref": "#/responses/500"
+          }
+        },
+        "description": "Search for the best bookable flight offers from a very simple query where you can specify as little as the travel origin, a destination and a departure date.\n\n### Query example\nWhat are the best offers for flights from New-York to Madrid the 1st of October 2020?\n<pre><code>\nGET https://test.api.amadeus.com/v1/shopping/flight-offers?origin=NYC&destination=MAD&departureDate=2020-10-01&max=2\n</code></pre>\n\n### Response example\n<pre><code>\n{\n    \"meta\": {\n        \"links\": {\n            \"self\": \"https://api.amadeus.com/v1/shopping/flight-offers?origin=NYC&destination=MAD&departureDate=2020-10-01&adults=1&nonStop=false&max=2\"\n        },\n        \"currency\": \"EUR\",\n        \"defaults\": {\n            \"nonStop\": false,\n            \"adults\": 1\n        }\n    },\n    \"data\": [\n        {\n            \"type\": \"flight-offer\",\n            \"id\": \"1571664155538--115688696\",\n            \"offerItems\": [\n                {\n                    \"services\": [\n                        {\n                            \"segments\": [\n                                {\n                                    \"flightSegment\": {\n                                        \"departure\": {\n                                            \"iataCode\": \"JFK\",\n                                            \"terminal\": \"5\",\n                                            \"at\": \"2020-10-01T23:00:00-04:00\"\n                                        },\n                                        \"arrival\": {\n                                            \"iataCode\": \"LIS\",\n                                            \"terminal\": \"1\",\n                                            \"at\": \"2020-10-02T10:55:00+01:00\"\n                                        },\n                                        \"carrierCode\": \"TP\",\n                                        \"number\": \"208\",\n                                        \"aircraft\": {\n                                            \"code\": \"339\"\n                                        },\n                                        \"operating\": {\n                                            \"carrierCode\": \"TP\",\n                                            \"number\": \"208\"\n                                        },\n                                        \"duration\": \"0DT6H55M\"\n                                    },\n                                    \"pricingDetailPerAdult\": {\n                                        \"travelClass\": \"ECONOMY\",\n                                        \"fareClass\": \"O\",\n                                        \"availability\": 9,\n                                        \"fareBasis\": \"OUSDSI0E\"\n                                    }\n                                },\n                                {\n                                    \"flightSegment\": {\n                                        \"departure\": {\n                                        \"iataCode\": \"LIS\",\n                                        \"terminal\": \"1\",\n                                        \"at\": \"2020-10-02T14:00:00+01:00\"\n                                        },\n                                        \"arrival\": {\n                                        \"iataCode\": \"MAD\",\n                                        \"terminal\": \"2\",\n                                        \"at\": \"2020-10-02T16:15:00+02:00\"\n                                        },\n                                        \"carrierCode\": \"TP\",\n                                        \"number\": \"1028\",\n                                        \"aircraft\": {\n                                        \"code\": \"319\"\n                                        },\n                                        \"operating\": {\n                                        \"carrierCode\": \"TP\",\n                                        \"number\": \"1028\"\n                                        },\n                                        \"duration\": \"0DT1H15M\"\n                                    },\n                                    \"pricingDetailPerAdult\": {\n                                        \"travelClass\": \"ECONOMY\",\n                                        \"fareClass\": \"O\",\n                                        \"availability\": 9,\n                                        \"fareBasis\": \"OUSDSI0E\"\n                                    }\n                                }\n                            ]\n                        }\n                    ],\n                    \"price\": {\n                        \"total\": \"104.21\",\n                        \"totalTaxes\": \"97.21\"\n                    },\n                    \"pricePerAdult\": {\n                        \"total\": \"104.21\",\n                        \"totalTaxes\": \"97.21\"\n                    }\n                }\n            ]\n        },\n        {\n            \"type\": \"flight-offer\",\n            \"id\": \"1571664155538-2057028253\",\n            \"offerItems\": [\n                {\n                    \"services\": [\n                        {\n                            \"segments\": [\n                                {\n                                    \"flightSegment\": {\n                                        \"departure\": {\n                                            \"iataCode\": \"JFK\",\n                                            \"terminal\": \"7\",\n                                            \"at\": \"2020-10-01T17:05:00-04:00\"\n                                        },\n                                        \"arrival\": {\n                                            \"iataCode\": \"MAD\",\n                                            \"terminal\": \"4S\",\n                                            \"at\": \"2020-10-02T06:15:00+02:00\"\n                                        },\n                                        \"carrierCode\": \"AY\",\n                                        \"number\": \"5654\",\n                                        \"aircraft\": {\n                                            \"code\": \"359\"\n                                        },\n                                        \"operating\": {\n                                            \"carrierCode\": \"IB\",\n                                            \"number\": \"5654\"\n                                        },\n                                        \"duration\": \"0DT7H10M\"\n                                    },\n                                    \"pricingDetailPerAdult\": {\n                                        \"travelClass\": \"ECONOMY\",\n                                        \"fareClass\": \"H\",\n                                        \"availability\": 9,\n                                        \"fareBasis\": \"HLW4C9S3\"\n                                    }\n                                }\n                            ]\n                        }\n                    ],\n                    \"price\": {\n                        \"total\": \"863.40\",\n                        \"totalTaxes\": \"84.40\"\n                    },\n                    \"pricePerAdult\": {\n                        \"total\": \"863.40\",\n                        \"totalTaxes\": \"84.40\"\n                    }\n                }\n            ]\n        }\n    ],\n    \"dictionaries\": {\n        \"carriers\": {\n            \"AY\": \"FINNAIR\",\n            \"IB\": \"IBERIA\",\n            \"TP\": \"TAP PORTUGAL\"\n        },\n        \"currencies\": {\n            \"EUR\": \"EURO\"\n        },\n        \"aircraft\": {\n            \"319\": \"AIRBUS INDUSTRIE A319\",\n            \"339\": \"AIRBUS A330-900NEO\",\n            \"359\": \"AIRBUS INDUSTRIE A350-900\"\n        },\n        \"locations\": {\n            \"MAD\": {\n                \"subType\": \"AIRPORT\",\n                \"detailedName\": \"ADOLFO SUAREZ BARAJAS\"\n            },\n            \"LIS\": {\n                \"subType\": \"AIRPORT\",\n                \"detailedName\": \"AIRPORT\"\n            },\n            \"JFK\": {\n                \"subType\": \"AIRPORT\",\n                \"detailedName\": \"JOHN F KENNEDY INTL\"\n            }\n        }\n    }\n}\n</code></pre>"
+      }
+    }
+  },
+  "definitions": {
+    "TravelClass": {
+      "description": "quality of service offered in the cabin where the seat is located in this flight. Economy, premium economy, business or first class",
+      "type": "string",
+      "enum": [
+        "ECONOMY",
+        "PREMIUM_ECONOMY",
+        "BUSINESS",
+        "FIRST"
+      ],
+      "example": "PREMIUM_ECONOMY"
+    },
+    "PricingDetail": {
+      "properties": {
+        "travelClass": {
+          "$ref": "#/definitions/TravelClass"
+        },
+        "fareClass": {
+          "description": "class of the fare that applied. Fare classes are subdivisions of travel classes and vary from airline to airline. For instance, Y designs usually a full fare economy class",
+          "type": "string",
+          "pattern": "[A-Z]",
+          "example": "L"
+        },
+        "availability": {
+          "description": "the number of seats still available at this time of search with this class of fare",
+          "type": "integer",
+          "example": 9
+        },
+        "fareBasis": {
+          "description": "the identifier of the fare that applied. Farebasis identifiers vary from airline to airline. It is usually composed of the fare class followed by other alphanumeric codes that identify the rules that apply to the fare. For instance, WH7LNR might mean that the fare class is W, that it is valid during high-season only (H) and for a 7-day advance purchase, long-haul (L) and not refundable (NR)",
+          "type": "string",
+          "example": "WH7LNR"
+        }
+      }
+    },
+    "Segment": {
+      "properties": {
+        "flightSegment": {
+          "$ref": "#/definitions/FlightSegment"
+        },
+        "pricingDetailPerAdult": {
+          "$ref": "#/definitions/PricingDetail"
+        },
+        "pricingDetailPerInfant": {
+          "$ref": "#/definitions/PricingDetail"
+        },
+        "pricingDetailPerChild": {
+          "$ref": "#/definitions/PricingDetail"
+        },
+        "pricingDetailPerSenior": {
+          "$ref": "#/definitions/PricingDetail"
+        }
+      }
+    },
+    "FlightSegment": {
+      "type": "object",
+      "description": "defining a flight segment; including both operating and marketing details when applicable",
+      "properties": {
+        "departure": {
+          "$ref": "#/definitions/FlightEndPoint"
+        },
+        "arrival": {
+          "$ref": "#/definitions/FlightEndPoint"
+        },
+        "carrierCode": {
+          "type": "string",
+          "description": "providing the airline / carrier code",
+          "minLength": 1,
+          "maxLength": 2,
+          "example": "DL"
+        },
+        "number": {
+          "type": "string",
+          "description": "the flight number as assigned by the carrier",
+          "minLength": 1,
+          "maxLength": 4,
+          "example": "212"
+        },
+        "aircraft": {
+          "$ref": "#/definitions/AircraftEquipment"
+        },
+        "operating": {
+          "$ref": "#/definitions/OperatingFlight"
+        },
+        "duration": {
+          "type": "string",
+          "description": "stop duration in [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) PnYnMnDTnHnMnS format, e.g. PT2H10M",
+          "example": "PT2H10M"
+        },
+        "stops": {
+          "type": "array",
+          "description": "information regarding the different stops composing the flight segment. E.g. technical stop, change of gauge...",
+          "items": {
+            "$ref": "#/definitions/FlightStop"
+          }
+        }
+      }
+    },
+    "FlightEndPoint": {
+      "type": "object",
+      "description": "departure or arrival information",
+      "properties": {
+        "iataCode": {
+          "description": "[IATA airline codes](http://www.iata.org/publications/Pages/code-search.aspx)",
+          "type": "string",
+          "example": "JFK"
+        },
+        "terminal": {
+          "description": "terminal name / number",
+          "type": "string",
+          "example": "T2"
+        },
+        "at": {
+          "description": "local date and time in [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) YYYY-MM-ddThh:mm±hh:mm format, e.g. 2017-02-10T20:40:00+02:00",
+          "type": "string",
+          "format": "date-time",
+          "example": "2017-10-23T20:00:00+02:00"
+        }
+      }
+    },
+    "FlightStop": {
+      "description": "details of stops for direct or change of gauge flights",
+      "type": "object",
+      "properties": {
+        "iataCode": {
+          "description": "[IATA airline codes](http://www.iata.org/publications/Pages/code-search.aspx)",
+          "type": "string",
+          "example": "JFK"
+        },
+        "newAircraft": {
+          "$ref": "#/definitions/AircraftEquipment"
+        },
+        "duration": {
+          "type": "string",
+          "description": "stop duration in [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) PnYnMnDTnHnMnS format, e.g. PT2H10M",
+          "example": "PT2H10M"
+        },
+        "arrivalAt": {
+          "description": "arrival at the stop in [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) YYYY-MM-ddThh:mm±hh:mm format, e.g. 2017-02-10T20:40:00+02:00",
+          "type": "string",
+          "format": "date-time",
+          "example": "2017-10-23T20:00:00+02:00"
+        },
+        "departureAt": {
+          "description": "departure from the stop in [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) YYYY-MM-ddThh:mm±hh:mm format, e.g. 2017-02-10T20:40:00+02:00",
+          "type": "string",
+          "format": "date-time",
+          "example": "2017-10-23T20:00:00+02:00"
+        }
+      }
+    },
+    "AircraftEquipment": {
+      "description": "information related to the aircraft",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "IATA aircraft code (http://www.flugzeuginfo.net/table_accodes_iata_en.php)\n",
+          "pattern": "[a-zA-Z0-9]{3}",
+          "example": "318"
+        }
+      }
+    },
+    "OperatingFlight": {
+      "type": "object",
+      "description": "information about the operating flight",
+      "properties": {
+        "carrierCode": {
+          "type": "string",
+          "description": "providing the airline / carrier code",
+          "minLength": 1,
+          "maxLength": 2,
+          "example": "DL"
+        },
+        "number": {
+          "type": "string",
+          "description": "the flight number as assigned by the carrier",
+          "minLength": 1,
+          "maxLength": 4,
+          "example": "212"
+        }
+      }
+    },
+    "Price": {
+      "properties": {
+        "total": {
+          "description": "Total amount paid by the user",
+          "type": "string",
+          "example": "932.70"
+        },
+        "totalTaxes": {
+          "type": "string",
+          "example": "300.00"
+        }
+      }
+    },
+    "Links": {
+      "properties": {
+        "self": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "LocationEntry": {
+      "required": [
+        "key"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {
+        "$ref": "#/definitions/LocationValue"
+      }
+    },
+    "FlightOffers": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FlightOffer"
+          }
+        },
+        "dictionaries": {
+          "$ref": "#/definitions/Dictionaries"
+        },
+        "meta": {
+          "$ref": "#/definitions/Meta"
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Issue"
+          },
+          "example": [
+            {
+              "status": "200",
+              "code": "12345",
+              "title": "WARNING"
+            }
+          ]
+        }
+      },
+      "example": {
+        "meta": {
+          "links": {
+            "self": "https://api.amadeus.com/v1/shopping/flight-offers?origin=NYC&destination=MAD&departureDate=2020-10-01&adults=1&nonStop=false&max=2"
+          },
+          "currency": "EUR",
+          "defaults": {
+            "nonStop": false,
+            "adults": 1
+          }
+        },
+        "data": [
+          {
+            "type": "flight-offer",
+            "id": "1571664155538--115688696",
+            "offerItems": [
+              {
+                "services": [
+                  {
+                    "segments": [
+                      {
+                        "flightSegment": {
+                          "departure": {
+                            "iataCode": "JFK",
+                            "terminal": "5",
+                            "at": "2020-10-01T23:00:00-04:00"
+                          },
+                          "arrival": {
+                            "iataCode": "LIS",
+                            "terminal": "1",
+                            "at": "2020-10-02T10:55:00+01:00"
+                          },
+                          "carrierCode": "TP",
+                          "number": "208",
+                          "aircraft": {
+                            "code": "339"
+                          },
+                          "operating": {
+                            "carrierCode": "TP",
+                            "number": "208"
+                          },
+                          "duration": "0DT6H55M"
+                        },
+                        "pricingDetailPerAdult": {
+                          "travelClass": "ECONOMY",
+                          "fareClass": "O",
+                          "availability": 9,
+                          "fareBasis": "OUSDSI0E"
+                        }
+                      },
+                      {
+                        "flightSegment": {
+                          "departure": {
+                            "iataCode": "LIS",
+                            "terminal": "1",
+                            "at": "2020-10-02T14:00:00+01:00"
+                          },
+                          "arrival": {
+                            "iataCode": "MAD",
+                            "terminal": "2",
+                            "at": "2020-10-02T16:15:00+02:00"
+                          },
+                          "carrierCode": "TP",
+                          "number": "1028",
+                          "aircraft": {
+                            "code": "319"
+                          },
+                          "operating": {
+                            "carrierCode": "TP",
+                            "number": "1028"
+                          },
+                          "duration": "0DT1H15M"
+                        },
+                        "pricingDetailPerAdult": {
+                          "travelClass": "ECONOMY",
+                          "fareClass": "O",
+                          "availability": 9,
+                          "fareBasis": "OUSDSI0E"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "price": {
+                  "total": "104.21",
+                  "totalTaxes": "97.21"
+                },
+                "pricePerAdult": {
+                  "total": "104.21",
+                  "totalTaxes": "97.21"
+                }
+              }
+            ]
+          },
+          {
+            "type": "flight-offer",
+            "id": "1571664155538-2057028253",
+            "offerItems": [
+              {
+                "services": [
+                  {
+                    "segments": [
+                      {
+                        "flightSegment": {
+                          "departure": {
+                            "iataCode": "JFK",
+                            "terminal": "7",
+                            "at": "2020-10-01T17:05:00-04:00"
+                          },
+                          "arrival": {
+                            "iataCode": "MAD",
+                            "terminal": "4S",
+                            "at": "2020-10-02T06:15:00+02:00"
+                          },
+                          "carrierCode": "AY",
+                          "number": "5654",
+                          "aircraft": {
+                            "code": "359"
+                          },
+                          "operating": {
+                            "carrierCode": "IB",
+                            "number": "5654"
+                          },
+                          "duration": "0DT7H10M"
+                        },
+                        "pricingDetailPerAdult": {
+                          "travelClass": "ECONOMY",
+                          "fareClass": "H",
+                          "availability": 9,
+                          "fareBasis": "HLW4C9S3"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "price": {
+                  "total": "863.40",
+                  "totalTaxes": "84.40"
+                },
+                "pricePerAdult": {
+                  "total": "863.40",
+                  "totalTaxes": "84.40"
+                }
+              }
+            ]
+          }
+        ],
+        "dictionaries": {
+          "carriers": {
+            "AY": "FINNAIR",
+            "IB": "IBERIA",
+            "TP": "TAP PORTUGAL"
+          },
+          "currencies": {
+            "EUR": "EURO"
+          },
+          "aircraft": {
+            "319": "AIRBUS INDUSTRIE A319",
+            "339": "AIRBUS A330-900NEO",
+            "359": "AIRBUS INDUSTRIE A350-900"
+          },
+          "locations": {
+            "MAD": {
+              "subType": "AIRPORT",
+              "detailedName": "ADOLFO SUAREZ BARAJAS"
+            },
+            "LIS": {
+              "subType": "AIRPORT",
+              "detailedName": "AIRPORT"
+            },
+            "JFK": {
+              "subType": "AIRPORT",
+              "detailedName": "JOHN F KENNEDY INTL"
+            }
+          }
+        }
+      }
+    },
+    "FlightOffer": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "the resource name",
+          "example": "flight-offer"
+        },
+        "id": {
+          "type": "string",
+          "description": "the resource identifier",
+          "example": "12345"
+        },
+        "offerItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OfferItem"
+          }
+        }
+      }
+    },
+    "OfferItem": {
+      "type": "object",
+      "properties": {
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Service"
+          }
+        },
+        "price": {
+          "$ref": "#/definitions/Price"
+        },
+        "pricePerAdult": {
+          "$ref": "#/definitions/Price"
+        },
+        "pricePerInfant": {
+          "$ref": "#/definitions/Price"
+        },
+        "pricePerChild": {
+          "$ref": "#/definitions/Price"
+        },
+        "pricePerSenior": {
+          "$ref": "#/definitions/Price"
+        }
+      }
+    },
+    "Service": {
+      "type": "object",
+      "properties": {
+        "segments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Segment"
+          }
+        }
+      }
+    },
+    "DictionaryEntry": {
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "example": "name"
+        }
+      },
+      "additionalProperties": {
+        "type": "string",
+        "example": "code"
+      }
+    },
+    "LocationValue": {
+      "properties": {
+        "subType": {
+          "type": "string",
+          "description": "Location type: airport or city",
+          "enum": [
+            "AIRPORT",
+            "CITY"
+          ],
+          "example": "AIRPORT"
+        },
+        "detailedName": {
+          "type": "string",
+          "description": "Name of the location",
+          "example": "John F. Kennedy International Airport"
+        }
+      }
+    },
+    "Dictionaries": {
+      "type": "object",
+      "properties": {
+        "carriers": {
+          "$ref": "#/definitions/DictionaryEntry"
+        },
+        "currencies": {
+          "$ref": "#/definitions/DictionaryEntry"
+        },
+        "aircraft": {
+          "$ref": "#/definitions/DictionaryEntry"
+        },
+        "locations": {
+          "$ref": "#/definitions/LocationEntry"
+        }
+      }
+    },
+    "Meta": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "$ref": "#/definitions/Links"
+        },
+        "currency": {
+          "type": "string",
+          "description": "the currency in which the prices of the flight offers are returned. Currency is specified in the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format, e.g. EUR for Euro",
+          "pattern": "[A-Z]{3}",
+          "example": "EUR"
+        },
+        "defaults": {
+          "$ref": "#/definitions/Defaults"
+        }
+      }
+    },
+    "Defaults": {
+      "description": "the query parameters for which default values were used are returned here",
+      "type": "object",
+      "properties": {
+        "nonStop": {
+          "description": "search finds only direct flights going from the origin to the destination with no stop",
+          "type": "boolean",
+          "example": false
+        },
+        "adults": {
+          "description": "search does the computation for one adult",
+          "type": "integer",
+          "example": 1
+        }
+      }
+    },
+    "Error_400": {
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Issue"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ],
+      "example": {
+        "errors": [
+          {
+            "status": 400,
+            "code": 477,
+            "title": "INVALID FORMAT",
+            "detail": "invalid query parameter format",
+            "source": {
+              "parameter": "airport",
+              "example": "CDG"
+            }
+          }
+        ]
+      }
+    },
+    "Error_500": {
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Issue"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ],
+      "example": {
+        "errors": [
+          {
+            "status": 500,
+            "code": 141,
+            "title": "SYSTEM ERROR HAS OCCURRED"
+          }
+        ]
+      }
+    },
+    "Issue": {
+      "properties": {
+        "status": {
+          "description": "the HTTP status code applicable to this error",
+          "type": "integer"
+        },
+        "code": {
+          "description": "an application-specific error code",
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "description": "a short summary of the error",
+          "type": "string"
+        },
+        "detail": {
+          "description": "explanation of the error",
+          "type": "string"
+        },
+        "source": {
+          "type": "object",
+          "title": "Issue_Source",
+          "description": "an object containing references to the source of the error",
+          "maxProperties": 1,
+          "properties": {
+            "pointer": {
+              "description": "a JSON Pointer [RFC6901] to the associated entity in the request document",
+              "type": "string"
+            },
+            "parameter": {
+              "description": "a string indicating which URI query parameter caused the issue",
+              "type": "string"
+            },
+            "example": {
+              "description": "a string indicating an example of the right value",
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/definitions/FlightOffers"
+      }
+    },
+    "400": {
+      "description": "code    | title                                 \n------- | ------------------------------------- \n425     | INVALID DATE\n432     | INVALID CURRENCY CODE\n477     | INVALID FORMAT\n1379    | VERIFY CURRENCY CODE\n4926    | INVALID DATA RECEIVED\n32171   | MANDATORY DATA MISSING\n",
+      "schema": {
+        "$ref": "#/definitions/Error_400"
+      }
+    },
+    "500": {
+      "description": "Unexpected error",
+      "schema": {
+        "$ref": "#/definitions/Error_500"
+      }
+    }
+  },
+  "x-generatedAt": "2020-04-06T10:37:11.037Z"
+}
