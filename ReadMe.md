@@ -1,12 +1,7 @@
 
 The Amadeus SDK for C# .NET makes it easy for developers to access Amadeus Self-Service APIs in their .NET Project code, and build travel applications using services like Air (Flight search and Inteliigence), Hotel (Hotel search and offers) and Destination(Point of interest). You can get started in minutes by installing the SDK through NuGet.
 
-## Step 1: Discover Self-Service APIs
-You can find all our APIs in our API catalogue. Don’t forget to stop by our GitHub workspace where you can find tons of samples and prototypes to get inspiration.
-You need a quick reference to all the API parameters? Check the pdf version of our Cheat Sheet.
-If you are a happy postman user, as we are, feel free to use the Amadeus for Developers postman collection.
-
-## Step 2: Set up your account
+## Step 1: Set up your account
 The first step to start using Amadeus Self-Service APIs is to register and create an account:
 
 In the top right corner of the page, click on register
@@ -14,10 +9,14 @@ Complete the form, using a valid email address and click on the Create account b
 In the confirmation email you receive, click on Confirm my account
 You can now log in to the portal with your new credentials! Welcome to Amadeus for Developers! 
 
-## Step 3: Get your API key
+## Step 2: Get your API key
 To start using the APIs you need to tell the system that you are allowed to do so. This process is called authentication.
 
 All you need to do is to attach an alphanumeric string called token to your calls. This token will identify you as valid user and is generated from two parameters: API Key and API Secret.
+
+## Step 3: Create project and add SDK
+
+Use the Nuget Package: AmadeusSdk
 
 
 ## Example Code:
