@@ -23,8 +23,8 @@ All you need to do is to attach an alphanumeric string called token to your call
 ## Example Code:
 
 ```csharp
-string client_id = "IwG49RrnRsJHKBZAYwFM4P5BJmoP1ynu";
-string client_secret = "Gpoqm0kWgl3lDX6b";
+string client_id = "<<CLIENT_ID>>";
+string client_secret = "<<CLIENT_SECRET>>";
 
 //Generate access token usually valid for 1800 sec
 AuthClient authClient = new AuthClient(client_id, client_secret);
