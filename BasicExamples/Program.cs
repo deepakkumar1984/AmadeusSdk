@@ -7,8 +7,8 @@ namespace BasicExamples
     {
         static void Main(string[] args)
         {
-            string client_id = "IwG49RrnRsJHKBZAYwFM4P5BJmoP1ynu";
-            string client_secret = "Gpoqm0kWgl3lDX6b";
+            string client_id = "XXXXXX";
+            string client_secret = "XXXXXX";
 
             //Generate access token usually valid for 1800 sec
             AuthClient authClient = new AuthClient(client_id, client_secret);
