@@ -14,7 +14,7 @@ Complete the form, using a valid email address and click on the Create account b
 In the confirmation email you receive, click on Confirm my account
 You can now log in to the portal with your new credentials! Welcome to Amadeus for Developers! 
 
-##Step 3: Get your API key
+## Step 3: Get your API key
 To start using the APIs you need to tell the system that you are allowed to do so. This process is called authentication.
 
 All you need to do is to attach an alphanumeric string called token to your calls. This token will identify you as valid user and is generated from two parameters: API Key and API Secret.
