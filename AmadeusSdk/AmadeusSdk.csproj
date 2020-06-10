@@ -11,8 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+    <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +26,232 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Destination\AIGeneratedPhotos.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AIGeneratedPhotos.json</DependentUpon>
+    </Compile>
+    <Compile Update="Destination\PointsOfInterest.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PointsOfInterest.json</DependentUpon>
+    </Compile>
+    <Compile Update="Destination\TripParser.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TripParser.json</DependentUpon>
+    </Compile>
+    <Compile Update="Destination\TripPurposePrediction.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TripPurposePrediction.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\AirlineCodeLookup.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AirlineCodeLookup.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\AirportCitySearch.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AirportCitySearch.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\AirportOnTimePerformance.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AirportOnTimePerformance.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\FlightBusiestTravelingPeriod.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FlightBusiestTravelingPeriod.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\FlightCheapestDateSearch.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FlightCheapestDateSearch.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\FlightCheckInLinks.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FlightCheckInLinks.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\FlightChoicePrediction.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FlightChoicePrediction.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\FlightCreateOrders.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FlightCreateOrders.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\FlightDelayPrediction.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FlightDelayPrediction.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\FlightInspirationSearch.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FlightInspirationSearch.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\FlightLowFareSearch.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FlightLowFareSearch.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\FlightMostBookedDestinations.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FlightMostBookedDestinations.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\FlightMostTraveledDestinations.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FlightMostTraveledDestinations.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\FlightOffersSearch.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FlightOffersSearch.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\FlightOrderManagement.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FlightOrderManagement.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\NearestRelevantAirports.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NearestRelevantAirports.json</DependentUpon>
+    </Compile>
+    <Compile Update="Flight\SeatMapDisplay.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SeatMapDisplay.json</DependentUpon>
+    </Compile>
+    <Compile Update="Hotel\HotelBooking.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HotelBooking.json</DependentUpon>
+    </Compile>
+    <Compile Update="Hotel\HotelRatings.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HotelRatings.json</DependentUpon>
+    </Compile>
+    <Compile Update="Hotel\HotelSearch.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HotelSearch.json</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Destination\AIGeneratedPhotos.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>AIGeneratedPhotos.cs</LastGenOutput>
+    </None>
+    <None Update="Destination\PointsOfInterest.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>PointsOfInterest.cs</LastGenOutput>
+    </None>
+    <None Update="Destination\TripParser.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>TripParser.cs</LastGenOutput>
+    </None>
+    <None Update="Destination\TripPurposePrediction.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>TripPurposePrediction.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\AirlineCodeLookup.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>AirlineCodeLookup.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\AirportCitySearch.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>AirportCitySearch.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\AirportOnTimePerformance.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>AirportOnTimePerformance.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\FlightBusiestTravelingPeriod.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>FlightBusiestTravelingPeriod.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\FlightCheapestDateSearch.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>FlightCheapestDateSearch.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\FlightCheckInLinks.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>FlightCheckInLinks.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\FlightChoicePrediction.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>FlightChoicePrediction.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\FlightCreateOrders.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>FlightCreateOrders.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\FlightDelayPrediction.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>FlightDelayPrediction.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\FlightInspirationSearch.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>FlightInspirationSearch.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\FlightLowFareSearch.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>FlightLowFareSearch.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\FlightMostBookedDestinations.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>FlightMostBookedDestinations.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\FlightMostTraveledDestinations.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>FlightMostTraveledDestinations.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\FlightOffersSearch.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>FlightOffersSearch.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\FlightOrderManagement.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>FlightOrderManagement.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\NearestRelevantAirports.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>NearestRelevantAirports.cs</LastGenOutput>
+    </None>
+    <None Update="Flight\SeatMapDisplay.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>SeatMapDisplay.cs</LastGenOutput>
+    </None>
+    <None Update="Hotel\HotelBooking.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>HotelBooking.cs</LastGenOutput>
+    </None>
+    <None Update="Hotel\HotelRatings.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>HotelRatings.cs</LastGenOutput>
+    </None>
+    <None Update="Hotel\HotelSearch.json">
+      <Generator>NSwagCodeGenerator</Generator>
+      <LastGenOutput>HotelSearch.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Connected Services\" />
   </ItemGroup>
 
 </Project>

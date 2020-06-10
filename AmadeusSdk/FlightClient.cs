@@ -25,44 +25,38 @@ namespace AmadeusSdk
         public FlightClient(string authToken, bool isLive = false)
         {
             var http = new System.Net.Http.HttpClient();
-            AirlineCodeLookup = new AirlineCodeLookup.Client(http);
-            AirportCitySearch = new AirportCitySearch.Client(http);
-            AirportOnTimePerformance = new AirportOnTimePerformance.Client(http);
-            FlightCheapestDateSearch = new FlightCheapestDateSearch.Client(http);
-            FlightCheckInLinks = new FlightCheckInLinks.Client(http);
-            FlightMostBookedDestinations = new FlightMostBookedDestinations.Client(http);
-            FlightBusiestTravelingPeriod = new FlightBusiestTravelingPeriod.Client(http);
-            FlightChoicePrediction = new FlightChoicePrediction.Client(http);
-            FlightCreateOrders = new FlightCreateOrders.Client(http);
-            FlightDelayPrediction = new FlightDelayPrediction.Client(http);
-            FlightInspirationSearch = new FlightInspirationSearch.Client(http);
-            FlightLowFareSearch = new FlightLowFareSearch.Client(http);
-            FlightMostTraveledDestinations = new FlightMostTraveledDestinations.Client(http);
-            FlightOffersSearch = new FlightOffersSearch.Client(http);
-            FlightOrderManagement = new FlightOrderManagement.Client(http);
-            NearestRelevantAirports = new NearestRelevantAirports.Client(http);
-            SeatMapDisplay = new SeatMapDisplay.Client(http);
-
+            var httpV1 = new System.Net.Http.HttpClient();
             if (isLive)
             {
-                AirlineCodeLookup.BaseUrl = AirlineCodeLookup.BaseUrl.Replace("test.", "");
-                AirportCitySearch.BaseUrl = AirportCitySearch.BaseUrl.Replace("test.", "");
-                AirportOnTimePerformance.BaseUrl = AirportOnTimePerformance.BaseUrl.Replace("test.", "");
-                FlightCheapestDateSearch.BaseUrl = FlightCheapestDateSearch.BaseUrl.Replace("test.", "");
-                FlightCheckInLinks.BaseUrl = FlightCheckInLinks.BaseUrl.Replace("test.", "");
-                FlightMostBookedDestinations.BaseUrl = FlightMostBookedDestinations.BaseUrl.Replace("test.", "");
-                FlightBusiestTravelingPeriod.BaseUrl = FlightBusiestTravelingPeriod.BaseUrl.Replace("test.", "");
-                FlightChoicePrediction.BaseUrl = FlightChoicePrediction.BaseUrl.Replace("test.", "");
-                FlightCreateOrders.BaseUrl = FlightCreateOrders.BaseUrl.Replace("test.", "");
-                FlightDelayPrediction.BaseUrl = FlightDelayPrediction.BaseUrl.Replace("test.", "");
-                FlightInspirationSearch.BaseUrl = FlightInspirationSearch.BaseUrl.Replace("test.", "");
-                FlightLowFareSearch.BaseUrl = FlightLowFareSearch.BaseUrl.Replace("test.", "");
-                FlightMostTraveledDestinations.BaseUrl = FlightMostTraveledDestinations.BaseUrl.Replace("test.", "");
-                FlightOffersSearch.BaseUrl = FlightOffersSearch.BaseUrl.Replace("test.", "");
-                FlightOrderManagement.BaseUrl = FlightOrderManagement.BaseUrl.Replace("test.", "");
-                NearestRelevantAirports.BaseUrl = NearestRelevantAirports.BaseUrl.Replace("test.", "");
-                SeatMapDisplay.BaseUrl = SeatMapDisplay.BaseUrl.Replace("test.", "");
+                http.BaseAddress = new Uri("https://api.amadeus.com/v2/");
+                httpV1.BaseAddress = new Uri("https://api.amadeus.com/v1/");
             }
+            else
+            {
+                http.BaseAddress = new Uri("https://test.api.amadeus.com/v2/");
+                httpV1.BaseAddress = new Uri("https://test.api.amadeus.com/v1/");
+            }
+
+            http.DefaultRequestHeaders.Add("Authorization", $"Bearer {authToken}");
+            httpV1.DefaultRequestHeaders.Add("Authorization", $"Bearer {authToken}");
+
+            AirlineCodeLookup = new AirlineCodeLookup.Client(httpV1);
+            AirportCitySearch = new AirportCitySearch.Client(httpV1);
+            AirportOnTimePerformance = new AirportOnTimePerformance.Client(httpV1);
+            FlightCheapestDateSearch = new FlightCheapestDateSearch.Client(httpV1);
+            FlightCheckInLinks = new FlightCheckInLinks.Client(http);
+            FlightMostBookedDestinations = new FlightMostBookedDestinations.Client(httpV1);
+            FlightBusiestTravelingPeriod = new FlightBusiestTravelingPeriod.Client(httpV1);
+            FlightChoicePrediction = new FlightChoicePrediction.Client(http);
+            FlightCreateOrders = new FlightCreateOrders.Client(httpV1);
+            FlightDelayPrediction = new FlightDelayPrediction.Client(httpV1);
+            FlightInspirationSearch = new FlightInspirationSearch.Client(httpV1);
+            FlightLowFareSearch = new FlightLowFareSearch.Client(httpV1);
+            FlightMostTraveledDestinations = new FlightMostTraveledDestinations.Client(httpV1);
+            FlightOffersSearch = new FlightOffersSearch.Client(http);
+            FlightOrderManagement = new FlightOrderManagement.Client(httpV1);
+            NearestRelevantAirports = new NearestRelevantAirports.Client(httpV1);
+            SeatMapDisplay = new SeatMapDisplay.Client(httpV1);
         }
     }
 }
